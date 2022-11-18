@@ -231,7 +231,9 @@ If you are using action cable unfortunately we will have to return to our projec
 #### Render.com Prep
 
  - The steps for Render.com are the same on App Academy open built we'll go over them quickly.
+
 1). Go to https://render.com/ sign up with your git account (you should be using github) or sign in.
+
 2). Grant permissions for render to access your account and repo's.
 
 ***
