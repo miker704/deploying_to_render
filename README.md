@@ -110,7 +110,9 @@ production:
 
 ```
 
-Note indention matters in .yaml files !
+Note indention matters in .yaml files !  
+
+Do not remove the old data base connection code incase you need to deploy to a different platform in the future you may need to use the old code instead.
 
 
 5). Change code in config/puma.rb
@@ -343,7 +345,7 @@ the url of your render website like so
     // create a consumer instance using your render website url / cable
 
     const cable = createConsumer('wss://appname.onrender.com/cable');
-    
+
     //comment out the render url instance when working on your project and use local host
     //push to github only the render url instance uncommented so it works on render
 
