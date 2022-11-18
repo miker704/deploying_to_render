@@ -17,10 +17,10 @@ Rails version 7.0.4 & Ruby version 3.1.2, if these instructions fail to work it 
 *** 
 
 
-1). If you attempted to deploy to render.com using the App Academy open instructions, proceed to redact all new changes made for render deployment.
+1). If you attempted to deploy to render.com using the App Academy Open instructions, proceed to redact all new changes made for render deployment.
 
 2). run bundle install and npm install to ensure your packages are up to date.
-  - If you recently upgraded your rails and ruby versions of your project rails 6.X.X or 7.X.X and your project uses active storage run 
+  - If you recently upgraded your rails and ruby versions of your project rails 6.X.X or 7.X.X and your project uses active storage run (this step maybe done already if you have been working on your project since upgrading)
 
 ```bat
 rails active_storage:update
@@ -38,8 +38,9 @@ as your shell script make sure the shell file is named ```render-build.sh```
 *** 
 Rails Version 5.2.X (this is the minimum to get your app running note that these instructions may fail)
 
-For rails version 5.2.X proceed with the following script first if build fails on render.com use 
+For rails version 5.2.X proceed with the following script first if the build fails on render.com use 
 the rails version 7 script
+
 ```bat
 #!/usr/bin/env bash
 # exit on error
@@ -52,7 +53,7 @@ bundle exec rake db:migrate
 
 #if site renders but no seeded data is present add this line 
 
-rails db:seed #if needed
+rails db:seed #if needed, comment this line out whenever pushing to a working deployment to avoid db errors
 
 ```
 If you attempted to set up a web service before on render most of these commands are the default given to you. this script is the minimum needed to deploy on render however if it fails to deploy proceed with the 
@@ -72,12 +73,11 @@ npm run build
 bundle exec rake assets:precompile
 bundle exec rake assets:clean
 bundle exec rake db:migrate
-rails db:seed #if needed
+rails db:seed #if needed, comment this line out whenever pushing to a working deployment to avoid db errors
 
 ```
 
-The difference between these scripts is some students have been able to deploy their app using just the provided build script given by render without seeding while others have to provide the seed command. And in my case using the default commands only renders the rails root page if this is the case the rails 6.X.X -> 
-script works. Its likely if your app uses rails 5.2.8 you may be fine just using the default build commands provided by render.com.
+The difference between these scripts is that some students have been able to deploy their app using just the provided build script given by render without seeding, while others have to provide the seed command. And in my case using the default commands only renders the rails root page if this is the case the rails 6.X.X -> script works. Its likely if your app uses rails 5.2.8 you may be fine just using the default build commands provided by render.com.
 
 
 
@@ -112,7 +112,7 @@ production:
 
 Note indention matters in .yaml files !  
 
-Do not remove the old data base connection code incase you need to deploy to a different platform in the future you may need to use the old code instead.
+Do not remove the old data base connection code incase you need to deploy to a different platform in the future, you may need to use the old code instead.
 
 
 5). Change code in config/puma.rb
@@ -289,11 +289,12 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
         this url is the value to are environment vars
 
         - Enter Key value pairs 
-        key                                 value
+           Key                              Value
            DATABASE_URL                     postgresql internal connection url
            RAILS_MASTER_KEY                 whatever your key is in your master.key file
            REDIS_URL                        redis internal connection url (if using redis)
 
+    - List any other key:value pairs your app needs for production deployment  
     - Click disable automatic deployment if you use action cable to avoid having to drop your db and connecting a new one. (Auto deploy rebuild and re-deploys your site after every git push )
     - Click Create Web Service your website will start to build from here if auto deploy was selected it will take anywhere up to 20 mins to finish.
 
