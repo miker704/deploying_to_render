@@ -320,7 +320,7 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 ```.js
     App.cable_name = App.cable.subscriptions.create({channel: 'channel_name', id: channel_id},{...})
 ```
-you dont have to do any changes for cables create here but if you create a cable by invoking consumer instace and binding it to ```subscriptions.create()``` like so:
+you dont have to do any changes for cables created using this method here, but if you create a cable by invoking a consumer instance and binding it to ```subscriptions.create()``` like so:
 
 
 ```.js
