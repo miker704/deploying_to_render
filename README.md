@@ -20,7 +20,7 @@ Rails version 7.0.4 & Ruby version 3.1.2, if these instructions fail to work it 
 1). If you attempted to deploy to render.com using the App Academy open instructions, proceed to redact all new changes made for render deployment.
 
 2). run bundle install and npm install to ensure your packages are up to date.
-    - If you recently upgraded your rails and ruby versions of your project rails 6.X.X or 7.X.X and your project uses active storage run 
+  - If you recently upgraded your rails and ruby versions of your project rails 6.X.X or 7.X.X and your project uses active storage run 
 
 ```bat
 rails active_storage:update
@@ -28,7 +28,7 @@ rails db:migrate
 rails db:drop
 rails db:setup
 ```
-    check to see if the updated migration files for active storage are up to date both rails 6.X.X and 7.X.X each have new migration files for active storage. Ensure after running rails db:setup that the seeding of your database is successful. Run your application as you normally would to verify that any pre-seed active storage media is present in your application.
+Check to see if the updated migration files for active storage are up to date both rails 6.X.X and 7.X.X each have new migration files for active storage. Ensure after running rails db:setup that the seeding of your database is successful. Run your application as you normally would to verify that any pre-seed active storage media is present in your application.
 
 3). In the bin folder of your rails app create a new .sh file named :
 
