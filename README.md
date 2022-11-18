@@ -343,6 +343,10 @@ the url of your render website like so
     // create a consumer instance using your render website url / cable
 
     const cable = createConsumer('wss://appname.onrender.com/cable');
+    
+    //comment out the render url instance when working on your project and use local host
+    //push to github only the render url instance uncommented so it works on render
+
 
     this.subscription = cable.subscriptions.create({channel:'channel_name', id: channel.id},{...})
 
