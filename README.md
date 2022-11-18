@@ -293,11 +293,12 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
   - Make sure the free tier is selected 
   - Click advanced 
   - Click Add Environment Variables 
-    - In the other tab that is at the dashboard click on postgresql and redis instances and
-      click on the connect button and copy the url that is provided by the internal connection slide
-      this url is the value to are environment vars
+  - In the other tab that is at the dashboard click on postgresql and redis instances and
+    click on the connect button and copy the url that is provided by the internal connection slide
+    this url is the value to are environment vars
 
         - Enter Key value pairs 
+
            Key                              Value
            DATABASE_URL                     postgresql internal connection url
            RAILS_MASTER_KEY                 whatever your key is in your master.key file
