@@ -175,7 +175,7 @@ Here we uncomment and increase the web worker from 2 to 4 unlike heroku render a
 we also uncomment preload_app! which allows some assets to be loaded by puma before executing the application and allows the web workers to use less memory. 
 
 NOTE: when working on your app comment these lines out for ```preload_app! and the code for webworkers``` your app 
-is very unlikely to be be built with concurrency programming to begin with. Your app will fail to receive changes rendered on screen this frequently occurs when sending and receiving data using action cable the web workers will take the request but fail to return data that would be rendered on screen as the main thread will finish its process before the worker thread can. Uncomment these lines before pushing to render again.
+is very unlikely to be be built with concurrency programming to begin with. Your app will fail to receive changes rendered on screen. This frequently occurs when sending and receiving data using action cable the web workers will take the request but fail to return data that would be rendered on screen as the main thread will finish its process before the worker thread can. Uncomment these lines before pushing to render again.
 
 6). Production file changes in config.environments/production.rb
 
