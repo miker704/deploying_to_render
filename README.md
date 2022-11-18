@@ -269,7 +269,7 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 
 1). In seperate tabs navigate to the dashboard and in the other Create a Web Service by clicking New + and Selecting Web Service 
 
-2). You will be redirected to a page asking to connected a repository on the right side click on configure on either your  github or gitlab account to grant render access to the repos in your account. After this a list of all repo should be listed, select the app your want to deploy by clicking connect.
+2). You will be redirected to a page asking to connected a repository on the right side click on configure on either your  github or gitlab account to grant render access to the repos in your account. After this a list of all your repo's should be listed, select the repo of the app you want to deploy by clicking connect.
 
     - Provide the name of your app (keep it lowercase to avoid problems)
     - Leave Root directory blank (your main branch serves as this already)
