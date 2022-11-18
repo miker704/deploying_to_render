@@ -308,7 +308,7 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
     <meta property="og:url" content="https://appname.onrender.com/#/" />
 ```
 
-2). Navigate to your config/production.rb file and remove the old websocket urls for heroku if the exist then add the following 
+2). Navigate to your config/production.rb file and remove the old websocket urls for heroku if they exist then add the following 
 ```.rb
   config.action_cable.url = 'wss://appname.onrender.com/cable'
   config.web_socket_server_url = 'wss://appname.onrender.com/cable'
