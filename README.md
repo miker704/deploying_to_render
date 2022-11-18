@@ -34,7 +34,7 @@ rails db:setup
 
 ```render-build.sh```
 - This repo provides both script versions for ease of use, check shell file folder you can copy the file 
-as your shell script
+as your shell script make sure the shell file is named ```render-build.sh```
 *** 
 Rails Version 5.2.X (this is the minimum to get your app running note that these instructions may fail)
 
