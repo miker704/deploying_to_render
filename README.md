@@ -11,6 +11,13 @@ Rails version 7.0.4 & Ruby version 3.1.2, if these instructions fail to work it 
 
 - This tutorial also covers steps for Applications that use Action Cable as well and the adjustments needed to be made to be used on Render.com.
 
+### Final Disclaimer 
+- Deploying you app on render.com can be tedious and build times are pretty long for free tier users. around 20 minutes once your build starts.
+- Unlike like Heroku an app that is deployed on render has a feature for auto deployment while this feature 
+seems useful, it only leads to frustration a single push to github regardless of the change can cause a build to fail. DISABLE AUTO-DEPLOY !
+- When working on an app deployed to render the changes in the config/puma.rb needed for the push must be commented out everytime you work on your app, as the code in this file will affect how data and your page re-renders especially if using Action Cable.
+
+
 ### Steps
 
 #### Code Base Prep
@@ -368,22 +375,31 @@ Thats it your done!
 ***
 ### IMPORTANT NOTES && TROUBLESHOOTING
 
+### My App was deployed but renders the root page from rails
+
 Using render-build.sh rails version 5.X.X script -> Rails Root page renders only 
 
 1). If you used the rails 5.X.X script to deploy on render.com your app may deploy but it may render only 
 the root page from your rails backend (as if your react frontend breaks) if this is the case use the rails 6.X.X - 7.X.X script instead. 
 
-2). If your app renders using the 5.X.X script but you cant sign in with your demo account/ missing pre-seeded assets add ```rails db:seed``` at the end of the shell file. note that some apps work fine without this command being provided.
+2). If your app renders to your splash or login page using the 5.X.X script but you cant sign in with your demo account/ missing pre-seeded assets add ```rails db:seed``` at the end of the shell file. note that some apps using rails 5.X.X work fine without this command being provided.
 
 3). For every build fail that requires a reseed you should delete the data base, create and connect a new one after the changes to your code has been pushed to github and a re-build/ deploy on render has been started.
 
 ### My data does not render when working on my project 
+
 4). when working on your application disable the webworkers and preload! code in config/puma.rb
 by commenting them out and uncommenting them before pushing back to render, your app is not configured
 for concurrency programming and can prevent receiving certain data requests. This is noticeable if your
 app uses Action Cable sending messages does not render on either users screen instantly due to the web workers taking the request, handling it but fails to send it back to either user this is due to the main thread of the application finishing its process before the web worker can. applications take main thread as priority.
- 
 
-Errors
-- Webpack Cli
-    - If this is the case use the 6.X.X script
+
+### My app successfully deployed but however when I pushed a new change it failed to build.
+
+5). This can be due to anything on your end, but its likely your db was re-seeded with data that cant be
+duplicated. To address issues with this its best to disable auto-deployment and create a new postgres db instance to connect to your app and rebuild it when big changes are made to your application. Do not waste your time rebuilding your app for every little change disable auto deploy to prevent breakages on your live version. 
+
+### I get an Error about Webpack CLI
+
+6). Use the build script for rails 6+ even if your using rails 5 you need to run npm install during the
+build process on render.
