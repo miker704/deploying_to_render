@@ -174,6 +174,8 @@ Here we uncomment and increase the web worker from 2 to 4 unlike heroku render a
 
 we also uncomment preload_app! which allows some assets to be loaded by puma before executing the application and allows the web workers to use less memory. 
 
+NOTE: when working on your app comment these lines out for ```preload! and the webworkers``` your app 
+is very unlikely to be be built with concurrency programming to begin with. Your app will fail to receive changes rendered on screen this frequently occurs when sending and receiving data using action cable the web workers will take the request but fail to return data that would be rendered on screen as the main thread will finish its process before the worker thread can. Uncomment these lines before pushing to render again.
 
 6). Production file changes in config.environments/production.rb
 
@@ -364,7 +366,7 @@ Note: if you want to you can enable Auto-Deploy by click settings and heading to
 Thats it your done!
 
 ***
-Notes
+### IMPORTANT NOTES && TROUBLESHOOTING
 
 Using render-build.sh rails version 5.X.X script -> Rails Root page renders only 
 
@@ -374,6 +376,13 @@ the root page from your rails backend (as if your react frontend breaks) if this
 2). If your app renders using the 5.X.X script but you cant sign in with your demo account/ missing pre-seeded assets add ```rails db:seed``` at the end of the shell file. note that some apps work fine without this command being provided.
 
 3). For every build fail that requires a reseed you should delete the data base, create and connect a new one after the changes to your code has been pushed to github and a re-build/ deploy on render has been started.
+
+### My data does not render when working on my project 
+4). when working on your application disable the webworkers and preload! code in config/puma.rb
+by commenting them out and uncommenting them before pushing back to render, your app is not configured
+for concurrency programming and can prevent receiving certain data requests. This is noticeable if your
+app uses Action Cable sending messages does not render on either users screen instantly due to the web workers taking the request, handling it but fails to send it back to either user this is due to the main thread of the application finishing its process before the web worker can. applications take main thread as priority.
+ 
 
 Errors
 - Webpack Cli
