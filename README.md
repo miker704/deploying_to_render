@@ -282,18 +282,29 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 
 2). You will be redirected to a page asking to connected a repository on the right side click on configure on either your  github or gitlab account to grant render access to the repos in your account. After this a list of all your repo's should be listed, select the repo of the app you want to deploy by clicking connect.
 
-    - Provide the name of your app (keep it lowercase to avoid problems)
-    - Leave Root directory blank (your main branch serves as this already)
-    - Environment Render might auto detect Node and select it for you change it to Ruby
-    - Select region if your in new york  -> Ohio(US East), California -> Oregon (US West)
-    - Branch select main
-    - For build command replace the string provided with bin/render-build.sh
-    - Start Command Replace the string with rails s
-    - Leave everything else blank/ to their default values 
-    - Make sure the free tier is selected 
-    - Click advanced 
-    - Click Add Environment Variables 
-    - In the other tab that is at the dashboard click on postgresql and redis instances and
+  - Provide the name of your app (keep it lowercase to avoid problems)
+
+  - Leave Root directory blank (your main branch serves as this already)
+
+  - Environment Render might auto detect Node and select it for you change it to Ruby
+
+  - Select region if your in new york  -> Ohio(US East), California -> Oregon (US West)
+
+  - Branch select main
+
+  - For build command replace the string provided with bin/render-build.sh
+
+  - Start Command Replace the string with rails s
+
+  - Leave everything else blank/ to their default values 
+
+  - Make sure the free tier is selected 
+
+  - Click advanced 
+
+  - Click Add Environment Variables 
+  
+  - In the other tab that is at the dashboard click on postgresql and redis instances and
       click on the connect button and copy the url that is provided by the internal connection slide
       this url is the value to are environment vars
 
@@ -304,15 +315,15 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
            RAILS_MASTER_KEY                 whatever your key is in your master.key file
            REDIS_URL                        redis internal connection url (if using redis)
 
-    - List any other key:value pairs your app needs for production deployment  
+  - List any other key:value pairs your app needs for production deployment  
 
-    - Click disable automatic deployment if you use action cable to avoid having to drop your db and connecting a new one.  
-      (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance 
-      and is best to leave it disabled).
+  - Click disable automatic deployment if you use action cable to avoid having to drop your db and connecting a new one.  
+   (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance 
+   and is best to leave it disabled).
 
-    - Click Create Web Service your website will start to build from here if   
-      auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual   
-      deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
+  - Click Create Web Service your website will start to build from here if   
+    auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual   
+    deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
 
   - For Redis Users a link to your website is provided copy this and head back to your project
 
