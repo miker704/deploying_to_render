@@ -303,7 +303,7 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
   - Click advanced 
 
   - Click Add Environment Variables 
-  
+
   - In the other tab that is at the dashboard click on postgresql and redis instances and
       click on the connect button and copy the url that is provided by the internal connection slide
       this url is the value to are environment vars
@@ -317,14 +317,10 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 
   - List any other key:value pairs your app needs for production deployment  
 
-  - Click disable automatic deployment if you use action cable to avoid having to drop your db and connecting a new one.  
-   (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance 
-   and is best to leave it disabled).
+  - Click disable automatic deployment if you use action cable to avoid having to drop your db and      connecting a new one. (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance and is best to leave it disabled).
 
-  - Click Create Web Service your website will start to build from here if   
-    auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual   
-    deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
-
+  - Click Create Web Service your website will start to build from here if auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
+  
   - For Redis Users a link to your website is provided copy this and head back to your project
 
 
