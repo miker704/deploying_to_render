@@ -402,10 +402,10 @@ the root page from your rails backend (as if your react frontend breaks) if this
 
 ### My data does not render when working on my project 
 
-4). when working on your application disable the webworkers and preload! code in config/puma.rb
+4). When working on your application disable the webworkers and preload! code in config/puma.rb
 by commenting them out and uncommenting them before pushing back to render, your app is not configured
 for concurrency programming and can prevent receiving certain data requests. This is noticeable if your
-app uses Action Cable sending messages does not render on either users screen instantly due to the web workers taking the request, handling it but fails to send it back to either user this is due to the main thread of the application finishing its process before the web worker can. applications take main thread as priority.
+app uses Action Cable sending messages does not render on either users screen instantly due to the web workers taking the request, handling it but fails to send it back to either user this is due to the main thread of the application finishing its process before the web worker can. Applications take the main thread process as priority over web workers/ sub threads.
 
 
 ### My app successfully deployed but however when I pushed a new change it failed to build.
