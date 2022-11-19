@@ -377,9 +377,9 @@ the url of your render website like so
     this.subscription = cable.subscriptions.create({channel:'channel_name', id: channel.id},{...})
 
 ```
-sync to changes to github and head back to render.com 
+Sync these changes to github and head back to render.com 
 
-- we are almost done go the the dashboard click on your web service we created and click on the blue button
+- We are almost done go the the dashboard click on your web service we created and click on the blue button
 title manual deploy and select clear build cache & deploy. your website will now build it should take no more than 20 minutes to finish.
 
 Note: if you want to you can enable Auto-Deploy by click settings and heading to Auto-Deploy click edit and set it to true and save changes.
