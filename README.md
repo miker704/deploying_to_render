@@ -1,5 +1,7 @@
 # Deploying a Rails-React Full-Stack Application to Render.com (Heroku -> Render only) 
 
+### For Deploying MERN Projects to Render.com from Heroku those instructions are here: 
+
 - These set of instructions are dedicated to App Academy students proceeding to re-deploy their rails - react full-stack apps from Heroku.com to Render.com, and the provided instructions on App Academy open have failed to work for them.
 
 - Note to clarify these set of instructions is using the latest version of rails and ruby as of 11/18/22 
@@ -24,7 +26,27 @@ seems useful, it only leads to frustration a single push to github regardless of
 *** 
 
 
-1). If you attempted to deploy to render.com using the App Academy Open instructions, proceed to redact all new changes made for render deployment.
+1). If you attempted to deploy to render.com using the App Academy Open instructions, proceed to redact all new changes made for render deployment. Note if your application uses the url of the platform your using to 
+create or execute some functionality for example generating a url for an invitation to a chat room or access some data.
+
+Example:
+```.js
+//code to generate access to a picture 
+
+let newPicture = `appname.herokuapp.com/#/${this.props.newPicture.id}`
+
+//or some invite url for a chat app clone (discord/slack/zoom etc)
+
+let newInviteLink = `appname.herokuapp.com/#/${this.props.server.id}/${this.props.server.mainChannelId}`
+
+```
+
+Any code like this will need to be changed in order to work on render however you wont be able to make these changes till our website url is set 
+up once we are able to obtain a link to our new website url change any code that is dependent on the platform url you are using. You can write a condtion check to handle different domain names check Dual Deploy section at the bottom of the readme.md
+
+IMPORTANT!: If you have a project that you want to be deployed on both render and heroku but uses code that is dependent on the deployed platform url to function, like the code given above Check the Important notes and troubleshooting section for the listing 'Dual Deploying an App that is dependent on platform urls' at the bottom of this repo for full instructions, complete this before proceeding as the changes that need to be made will break the live version on heroku or render once a rebuild on either platform is initiated. If your app does not depend on its platform url to function you can disregard this and can deploy to both sites safely.
+
+
 
 2). run bundle install and npm install to ensure your packages are up to date.
   - If you recently upgraded your rails and ruby versions of your project rails 6.X.X or 7.X.X and your project uses active storage run (this step maybe done already if you have been working on your project since upgrading)
@@ -417,3 +439,75 @@ duplicated. To address issues with this its best to disable auto-deployment and 
 
 6). Use the build script for rails 6+ even if your using rails 5 you need to run npm install during the
 build process on render.
+
+## Dual Deploy an Application (Keeping Heroku version up and deploying to Render)
+
+- Dual Deploying an Application can fall under to different situations that need to addressed differently:
+
+    - If you have an application that does not use code that depends on your deployed platform url to generate some data (i.e. urls, invites, etc) or execute some task you can deploy the application on both render and heroku keeping both versions live without any problems.
+
+    - If you have code that is DEPENDENT on your platforms url to generate data (i.e. urls, invites, etc)/ execute tasks you will need to do the following :
+
+      - You must have seperate repos of your application for deployments on aws, heroku or render specifically, you can deploy to all these platforms using one repo if you can right a condtional check for the url for example
+
+      ```.js
+
+        let heroku_url = `appname.herokuapp.com/#/`;
+        let render_url = `appname.onrender.com/#/`;
+
+        let platform_url = this.props.location.pathname =  // NOOOOO !!!! this does not work props,history and props.location only returns script paths
+
+        // we will have to use js windows api util library 
+
+        windows.location.pathname = returns full url 
+        windows.location.hostname = returns the host name (domain name)
+        //in this example let use local host as url so windows.location.href = 'http://localhost:3000/#/blah/blah/blah'
+        
+        //if the only platforms are heroku and render that the app is deployed on if you have more platforms use a switch statment to handle
+        //the check
+
+        let platform_url = window.location.href.includes(heroku_url) ? heroku_url : render_url
+
+      
+      ```
+
+      If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:
+
+      To do this we must create seperate repos here you'll something new about git 
+
+      We will mirror repos of our project:
+
+      on your github or git lab account create a new repo named your app name _ platform example : appname_render or appname_heroku
+
+      in the console navigate to whereever your projects are stored and create a new directory
+
+      ```shell script
+      user:~/.../ mkdir appname_render
+      user:~/.../ cd appname_render
+      user:~/.../ git clone --bare https://github.com/user/old-repository-appname.git (your orignal repo link)
+      user:~/.../ cd old-repository-appname.git
+      user:~/.../ git push --mirror https:://github.com/user/new-repository.git    (the new repo you created moments ago)
+      user:~/.../ cd ..
+      user:~/.../ rm -rf old-repository-appname.git  //delete git of old repo
+      user:~/.../ git clone https:://github.com/user/new-repository.git  //clone the mirrored repo
+      user:~/.../ cd appname_platformname
+
+      ```
+      after this process proceed to make needed changes to your project after you obtain your new domain url 
+      on render.com use connect to this repo to deploy this version of your app
+      after successful deployment you can choose to keep this repo private and provide the url for render.com in the readme.md file
+      of the original repo along with the heroku version.
+
+      Why mirror and not fork or clone ? 
+        This is simple cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
+        
+        Forked repos are basically copies of the orignal repo when changes are pushed to the parent repo the fork can be used to sync those
+        changes to the forked version undoing any changes you may have pushed to your fork.
+
+        Mirrored repos are copies of the original repo including commit history, with exceptions to wiki and other repo props
+        and can be pushed changes to itself that do not reflect to the orginal nor can changes in the orignal repo effect it 
+        it is a more effective way to create a new repo for an existing project than removing the old git folder and creating a new one 
+        it allows you access to the projects git history to make and undo changes easily. 
+
+
+
