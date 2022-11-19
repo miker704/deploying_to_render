@@ -44,7 +44,7 @@ let newInviteLink = `appname.herokuapp.com/#/${this.props.server.id}/${this.prop
 Any code like this will need to be changed in order to work on render however you wont be able to make these changes till our website url is set 
 up once we are able to obtain a link to our new website url change any code that is dependent on the platform url you are using. You can write a condtion check to handle different domain names check Dual Deploy section at the bottom of the readme.md
 
-IMPORTANT!: If you have a project that you want to be deployed on both render and heroku but uses code that is dependent on the deployed platform url to function, like the code given above Check the Important notes and troubleshooting section for the listing 'Dual Deploying an App that is dependent on platform urls' at the bottom of this repo for full instructions, complete this before proceeding as the changes that need to be made will break the live version on heroku or render once a rebuild on either platform is initiated. If your app does not depend on its platform url to function you can disregard this and can deploy to both sites safely.
+IMPORTANT!: If you have a project that you want to be deployed on both render and heroku but uses code that is dependent on the deployed platform url to function, like the code given above Check the Important notes and troubleshooting section for the listing 'Dual Deploying an App that is dependent on platform urls' at the bottom of this repo for full instructions, complete this before proceeding as the changes that need to be made will break the live version on heroku or render once a rebuild on either platform is initiated. If your app does not depend on its platform url to function you can disregard this and can deploy to both sites safely. If you are abandoning heroku and moving to render you will have to make the code changes needed in your app after obtaining your website url.
 
 
 
@@ -498,14 +498,15 @@ build process on render.
       after successful deployment you can choose to keep this repo private and provide the url for render.com in the readme.md file
       of the original repo along with the heroku version.
 
-      Why mirror and not fork or clone ? 
-        This is simple cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
+      Why mirror? and not fork or clone ? 
+
+        This is simply due to that cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
         
         Forked repos are basically copies of the orignal repo when changes are pushed to the parent repo the fork can be used to sync those
         changes to the forked version undoing any changes you may have pushed to your fork.
 
         Mirrored repos are copies of the original repo including commit history, with exceptions to wiki and other repo props
-        and can be pushed changes to itself that do not reflect to the orginal nor can changes in the orignal repo effect it 
+        and can be pushed changes to itself that do not reflect to the original nor can changes in the orignal repo effect it 
         it is a more effective way to create a new repo for an existing project than removing the old git folder and creating a new one 
         it allows you access to the projects git history to make and undo changes easily. 
 
