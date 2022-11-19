@@ -321,11 +321,11 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 
   - Leave everything else blank/ to their default values 
 
-  - Make sure the free tier is selected 
+- Make sure the free tier is selected 
 
-  - Click advanced 
+- Click advanced 
 
-  - Click Add Environment Variables 
+- Click Add Environment Variables 
 
   - In the other tab that is at the dashboard click on postgresql and redis instances and
       click on the connect button and copy the url that is provided by the internal connection slide
@@ -472,15 +472,13 @@ build process on render.
       
       ```
 
-      If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:
+    If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:
 
-      To do this we must create seperate repos here you'll something new about git 
+    To do this we must create seperate repos here you'll something new about git 
 
-      We will mirror repos of our project:
+    We will mirror repos of our project:
 
-      on your github or git lab account create a new repo named your app name _ platform example : appname_render or appname_heroku
-
-      in the console navigate to whereever your projects are stored and create a new directory
+    - On your github or git lab account create a new repo named your app name _ platform example : appname_render or appname_heroku in the console navigate to whereever your projects are stored and create a new directory
 
       ```shell script
       user:~/.../ mkdir appname_render
@@ -494,22 +492,22 @@ build process on render.
       user:~/.../ cd appname_platformname
 
       ```
-      after this process proceed to make needed changes to your project after you obtain your new domain url 
-      on render.com use connect to this repo to deploy this version of your app
-      after successful deployment you can choose to keep this repo private and provide the url for render.com in the readme.md file
-      of the original repo along with the heroku version.
+    After this process proceed to make needed changes to your project after you obtain your new domain url 
+    on render.com use connect to this repo to deploy this version of your app
+    after successful deployment you can choose to keep this repo private and provide the url for render.com in the readme.md file
+    of the original repo along with the heroku version.
 
-      Why mirror? and not fork or clone ? 
+    Why mirror? and not fork or clone ? 
 
-        This is simply due to that cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
+    This is simply due to that cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
         
-        Forked repos are basically copies of the orignal repo when changes are pushed to the parent repo the fork can be used to sync those
-        changes to the forked version undoing any changes you may have pushed to your fork.
+    Forked repos are basically copies of the orignal repo when changes are pushed to the parent repo the fork can be used to sync those
+    changes to the forked version undoing any changes you may have pushed to your fork.
 
-        Mirrored repos are copies of the original repo including commit history, with exceptions to wiki and other repo props
-        and can be pushed changes to itself that do not reflect to the original nor can changes in the orignal repo effect it 
-        it is a more effective way to create a new repo for an existing project than removing the old git folder and creating a new one 
-        it allows you access to the projects git history to make and undo changes easily. 
+    Mirrored repos are copies of the original repo including commit history, with exceptions to wiki and other repo props
+    and can be pushed changes to itself that do not reflect to the original nor can changes in the orignal repo effect it 
+    it is a more effective way to create a new repo for an existing project than removing the old git folder and creating a new one 
+    it allows you access to the projects git history to make and undo changes easily. 
 
 
 
