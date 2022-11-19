@@ -1,6 +1,7 @@
 # Deploying a Rails-React Full-Stack Application to Render.com (Heroku -> Render only) 
 
 ### For Deploying MERN Projects to Render.com from Heroku those instructions are here: 
+[MERN_DEPLOY](./Deploying_MERN_To_render.md)
 
 - These set of instructions are dedicated to App Academy students proceeding to re-deploy their rails - react full-stack apps from Heroku.com to Render.com, and the provided instructions on App Academy open have failed to work for them.
 
