@@ -222,7 +222,7 @@ Try the App Academy Open method below
 
 you can proceed to change your script blocks in your root package.json and frontend.json to do the following
 
-## App Academy Open method
+## App Academy Open Method
 
 root package.json
 
