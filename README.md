@@ -333,18 +333,22 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 
     - Enter Key value pairs
 
-            Key                              Value
-            DATABASE_URL                     postgresql internal connection url
-            RAILS_MASTER_KEY                 whatever your key is in your master.key file
-            REDIS_URL                        redis internal connection url (if using redis)
+```shell
 
-  - List any other key:value pairs your app needs for production deployment  
+    Key                              Value
+    MONGO_URI                        Your Mongo db url that should be in a private file called key_dev.js (dont wrap url in " ")
+    SECRET_OR_KEY                    whatever secretOrKey is in your key_dev.js file (do not wrap the key in " ")
+    REDIS_URL                        redis internal connection url (if using redis)
 
-  - Click disable automatic deployment if you use action cable to avoid having to drop your db and      connecting a new one. (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance and is best to leave it disabled).
+```
 
-  - Click Create Web Service your website will start to build from here if auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
+- List any other key:value pairs your app needs for production deployment  
+
+- Click disable automatic deployment if you use action cable to avoid having to drop your db and      connecting a new one. (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance and is best to leave it disabled).
+
+- Click Create Web Service your website will start to build from here if auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
   
-  - For Redis Users a link to your website is provided copy this and head back to your project
+- For Redis Users a link to your website is provided copy this and head back to your project
 
 #### For Redis users
 
