@@ -488,13 +488,21 @@ To do this we must create seperate repos here you'll something new about git
 ```shell script
       
 user:~/.../ mkdir appname_render
+
 user:~/.../ cd appname_render
+
 user:~/.../ git clone --bare https://github.com/user/old-repository-appname.git (your orignal repo link)
+
 user:~/.../ cd old-repository-appname.git
-user:~/.../ git push --mirror https:://github.com/user/new-repository.git (the new repo you created moments ago)
+
+user:~/.../ git push --mirror https:://github.com/user/new-repository.git (the new repo you created)
+
 user:~/.../ cd ..
+
 user:~/.../ rm -rf old-repository-appname.git //delete git of old repo
+
 user:~/.../ git clone https:://github.com/user/new-repository.git //clone the mirrored repo
+
 user:~/.../ cd appname_platformname
 
 ```
