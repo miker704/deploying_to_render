@@ -7,7 +7,7 @@
 If your cohort started after 9/2022 its recommended you follow the instructions on App Academy Open first before trying this method,
 if that method fails you'll need to combine Open's instructions and the instructions here to deploy your application.
 
-# Disclaimers Before Proceeding
+## Disclaimers Before Proceeding
 
 - If your app has code that is dependent on the full url including the domain/host name to execute/ generate some data link custom urls, invite links etc. You will need to make the proper changes after obtaining your website url from render.com.
 
@@ -53,7 +53,7 @@ Lets go over quickly on a condtional check for using a singler repo for multiple
 
 If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:  
 
-To do this we must create seperate repos here you'll something new about git 
+To do this we must create seperate repos here you'll something new about git
 
 We will mirror repos of our project:
 
@@ -73,11 +73,10 @@ We will mirror repos of our project:
     ```
 
 You dont have to do these steps if:
+
 - You are abandoning heroku to move to render
 - your app's code is not dependent on using your domain name for some task
 - If your app is domain dependent but your are not deploying to both heroku and render you can make the changes for render and push to the orginal repo.
-
-
 
 ## Code Prep
 
@@ -91,10 +90,8 @@ npm audit fix // update whatever can be changed safely
 npm audit fix --force // force the update (including breaking changes avoid this unless you know what your doing)
 ```
 
-
 Now here comes the confusing part every person has their own custom build scripts in there ```package.json``` files however we typically follow
-a similar format/ the scripts are generally the same, only the commands maybe named differently. 
-
+a similar format/ the scripts are generally the same, only the commands maybe named differently.
 
 For package.json at the root directory
 
@@ -122,7 +119,7 @@ For package.json in frontend/package.json
   },
 ```
 
-In your app.js file in the root directory should have a line looking like this: 
+In your app.js file in the root directory should have a line looking like this:
 
 ```.js
 if (process.env.NODE_ENV === 'production') {
@@ -141,76 +138,76 @@ static frontend files into a frontend/build folder via express was needed to dep
 
 Now prior to pushing your changes to github/gitlab if your mern project was built on machines using different operating systems, windows/wsl, mac os or linux you may experience a build error on render for unsupported platform given. To avoid this delete all  ```package-lock.json``` files leaving only the ```package.json``` files then push to github/gitlab.
 
-
 ## Render.com
 
- - The steps for Render.com are the same on App Academy open built we'll go over them quickly.
+- The steps for Render.com are the same on App Academy open built we'll go over them quickly.
 
-1). Go to https://render.com/ sign up with your git account (you should be using github) or sign in.
+1). Go to <https://render.com/> sign up with your git account (you should be using github) or sign in.
 
 2). Grant permissions for render to access your account and repo's.
 
+### Redis (If your App uses Web Sockets)
 
-#### Redis (If your App uses  Web Sockets)
+1). Create a Redis Instance by click New +  and selecting Redis
 
+- Create your Redis Instance provide a name (preferably in lowercase chars and the same as your app name)
+- Select region if your in new york  -> Ohio(US East), California -> Oregon (US West)
+- Leave everything else blank/ to their default values
+- Make sure the free tier is selected
+- Click Create Redis
 
-1). Create a Redis Instance by click New +  and selecting Redis 
+#### Web Service
 
-    - Create your Redis Instance provide a name (preferably in lowercase chars and the same as your app name)
-    - Select region if your in new york  -> Ohio(US East), California -> Oregon (US West)
-    - Leave everything else blank/ to their default values 
-    - Make sure the free tier is selected 
-    - Click Create Redis
-
-
-####  Web Service 
-
-1). In seperate tabs navigate to the dashboard and in the other Create a Web Service by clicking New + and Selecting Web Service 
+1). In seperate tabs navigate to the dashboard and in the other Create a Web Service by clicking New + and Selecting Web Service
 
 2). You will be redirected to a page asking to connected a repository on the right side click on configure on either your  github or gitlab account to grant render access to the repos in your account. After this a list of all your repo's should be listed, select the repo of the app you want to deploy by clicking connect.
 
-  - Provide the name of your app (keep it lowercase to avoid problems)
+- Provide the name of your app (keep it lowercase to avoid problems)
 
-  - Leave Root directory blank (your main branch serves as this already)
+- Leave Root directory blank (your main branch serves as this already)
 
-  - Environment Render might auto detect Node and select it for you, if not make sure it is selected
+- Environment Render might auto detect Node and select it for you, if not make sure it is selected
 
-  - Select region if your in new york  -> Ohio(US East), California -> Oregon (US West)
+- Select region if your in new york  -> Ohio(US East), California -> Oregon (US West)
 
-  - Branch select main
+- Branch select the main option
 
-  - For build command replace the string provided with npm install && npm run heroku-postbuild
+- For build command replace the string provided with npm install && npm run heroku-postbuild
 
-  - Start Command Replace the string with npm run start && npm run frontend
+- Start Command Replace the string with npm run start && npm run frontend
 
-  - Leave everything else blank/ to their default values 
+- Leave everything else blank/ to their default values
 
-- Make sure the free tier is selected 
+- Make sure the free tier is selected
 
-- Click advanced 
+- Click advanced
 
-- Click Add Environment Variables 
+- Click Add Environment Variables
 
   - If you are using websockets In the other tab go to the render dashboard click on the redis instances and
-      click on the connect button and copy the url that is provided by the internal connection slide
-      this url is the value to are environment vars
+    click on the connect button and copy the url that is provided by the internal connection slide
+    this url is the value to are environment vars
 
-        - Enter Key value pairs 
+  - Enter Key value pairs
 
-           Key                              Value
-           MONGO_URI                        Your Mongo db url that should be in a private file called key_dev.js (dont wrap url in " ")
-           SECRET_OR_KEY                    whatever secretOrKey is in your key_dev.js file (do not wrap the key in " ")
-           REDIS_URL                        redis internal connection url (if using redis)
+```shell
 
-  - List any other key:value pairs your app needs for production deployment  
+    Key                              Value
+    MONGO_URI                        Your Mongo db url that should be in a private file called key_dev.js (dont wrap url in " ")
+    SECRET_OR_KEY                    whatever secretOrKey is in your key_dev.js file (do not wrap the key in " ")
+    REDIS_URL                        redis internal connection url (if using redis)
 
-  - Click disable automatic deployment (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance and is best to leave it disabled).
+```
 
-  - Click Create Web Service your website will start to build from here if auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
+- List any other key:value pairs your app needs for production deployment  
 
-  - If your using Redis a link to your website is provided copy this and head back to your project and make the need changes for your web sockets to work on render.com. Push to github after making the changes and rebuild on render via  "Clear build cache & deploy".
+- Click disable automatic deployment (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance and is best to leave it disabled).
 
-  Thats it Your Done!
+- Click Create Web Service your website will start to build from here if auto deploy was selected it will start building automatically. If auto-deploy is not enabled click on manual deploy and select "Clear build cache & deploy". The build process takes anywhere up to 20 mins to finish.
+
+- If your using Redis a link to your website is provided copy this and head back to your project and make the need changes for your web sockets to work on render.com. Push to github after making the changes and rebuild on render via  "Clear build cache & deploy".
+
+Thats it Your Done!
 
 ## Errors and Troubleshooting
 
@@ -225,10 +222,7 @@ Try the App Academy Open method below
 
 you can proceed to change your script blocks in your root package.json and frontend.json to do the following
 
-
-
-
-# App Academy Open method 
+## App Academy Open method
 
 root package.json
 
@@ -287,7 +281,7 @@ First ensure your root package.json script block has something similar to this:
 
 And your frontend package.json has a script body like:
 
-```json 
+```json
  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -319,10 +313,15 @@ Start Command to ```npm run start```
 
 click save changes then click manual deploy and select "Clear build cache & deploy".
 
-3). npm install error (code EBADPLATFORM) or npm error unsupported platform for fsEvents
-    this error give some additon information comprising of 
-    os: darwin, arch: x64 
-    basically some operating system specs
+3). npm install error (code EBADPLATFORM) or npm error unsupported platform for fsEvents  
+This error gives some additionl; information comprising of:  
+
+```shell
+
+  os: darwin, arch: x64
+  basically some operating system specs
+
+```
 
 The cause of this error is due to the project being developed on multiple machines involving different operating systems i.e direct development on windows os, wsl, linux, and mac os, or any of the previously mentioned on virtual machine platform like virtualbox.
 
