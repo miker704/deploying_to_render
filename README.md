@@ -470,7 +470,8 @@ build process on render.
 
       windows.location.pathname = returns full url 
       windows.location.hostname = returns the host name (domain name)
-      //in this example let use local host as url so windows.location.href = 'http://localhost:3000/#/blah/blah/blah'
+      //in this example let use local host as url 
+      //so windows.location.href = 'http://localhost:3000/#/blah/blah/blah'
         
       //if the only platforms are heroku and render that the app is deployed on 
       //if you have more platforms use a switch statement to handle the check
