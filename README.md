@@ -335,10 +335,10 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 
 ```shell
 
-    Key                              Value
-    MONGO_URI                        Your Mongo db url that should be in a private file called key_dev.js (dont wrap url in " ")
-    SECRET_OR_KEY                    whatever secretOrKey is in your key_dev.js file (do not wrap the key in " ")
-    REDIS_URL                        redis internal connection url (if using redis)
+Key                              Value
+MONGO_URI                        Your Mongo db url that should be in a private file called key_dev.js (dont wrap url in " ")
+SECRET_OR_KEY                    whatever secretOrKey is in your key_dev.js file (do not wrap the key in " ")
+REDIS_URL                        redis internal connection url (if using redis)
 
 ```
 
