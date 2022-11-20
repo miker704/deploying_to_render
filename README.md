@@ -333,15 +333,11 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
 
     - Enter Key value pairs
 
-```shell
-
-- Enter Key value pairs 
-
-   Key                              Value
-   DATABASE_URL                     postgresql internal connection url
-   RAILS_MASTER_KEY                 whatever your key is in your master.key file
-   REDIS_URL                        redis internal connection url (if using redis)
-
+```{
+  Key                              Value
+  DATABASE_URL                     postgresql internal connection url
+  RAILS_MASTER_KEY                 whatever your key is in your master.key file
+  REDIS_URL                        redis internal connection url (if using redis)
 ```
 
 - List any other key:value pairs your app needs for production deployment  
