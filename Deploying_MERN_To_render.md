@@ -190,13 +190,11 @@ Now prior to pushing your changes to github/gitlab if your mern project was buil
 
   - Enter Key value pairs
 
-```shell
-
+```{
     Key                              Value
-    MONGO_URI                        Your Mongo db url that should be in a private file called key_dev.js (dont wrap url in " ")
+    MONGO_URI                        Your Mongo db url that should be in your key_dev.js file (dont wrap url in " ")
     SECRET_OR_KEY                    whatever secretOrKey is in your key_dev.js file (do not wrap the key in " ")
     REDIS_URL                        redis internal connection url (if using redis)
-
 ```
 
 - List any other key:value pairs your app needs for production deployment  
