@@ -486,15 +486,16 @@ To do this we must create seperate repos here you'll something new about git
 - On your github or git lab account create a new repo named your app name _ platform example : appname_render or appname_heroku in the console navigate to whereever your projects are stored and create a new directory
 
 ```shell script
-      user:~/.../ mkdir appname_render
-      user:~/.../ cd appname_render
-      user:~/.../ git clone --bare https://github.com/user/old-repository-appname.git (your orignal repo link)
-      user:~/.../ cd old-repository-appname.git
-      user:~/.../ git push --mirror https:://github.com/user/new-repository.git (the new repo you created moments ago)
-      user:~/.../ cd ..
-      user:~/.../ rm -rf old-repository-appname.git //delete git of old repo
-      user:~/.../ git clone https:://github.com/user/new-repository.git //clone the mirrored repo
-      user:~/.../ cd appname_platformname
+      
+user:~/.../ mkdir appname_render
+user:~/.../ cd appname_render
+user:~/.../ git clone --bare https://github.com/user/old-repository-appname.git (your orignal repo link)
+user:~/.../ cd old-repository-appname.git
+user:~/.../ git push --mirror https:://github.com/user/new-repository.git (the new repo you created moments ago)
+user:~/.../ cd ..
+user:~/.../ rm -rf old-repository-appname.git //delete git of old repo
+user:~/.../ git clone https:://github.com/user/new-repository.git //clone the mirrored repo
+user:~/.../ cd appname_platformname
 
 ```
 
