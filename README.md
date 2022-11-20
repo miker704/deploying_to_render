@@ -445,69 +445,64 @@ build process on render.
 
 - Dual Deploying an Application can fall under to different situations that need to addressed differently:
 
-    - If you have an application that does not use code that depends on your deployed platform url to generate some data (i.e. urls, invites, etc) or execute some task you can deploy the application on both render and heroku keeping both versions live without any problems.
+  - If you have an application that does not use code that depends on your deployed platform url to generate some data (i.e. urls, invites, etc) or execute some task you can deploy the application on both render and heroku keeping both versions live without any problems.
 
-    - If you have code that is DEPENDENT on your platforms url to generate data (i.e. urls, invites, etc)/ execute tasks you will need to do the following :
+  - If you have code that is DEPENDENT on your platforms url to generate data (i.e. urls, invites, etc)/ execute tasks you will need to do the following:
 
-      - You must have seperate repos of your application for deployments on aws, heroku or render specifically, you can deploy to all these platforms using one repo if you can right a condtional check for the url for example
+  - You must have seperate repos of your application for deployments on aws, heroku or render specifically, you can deploy to all these platforms using one repo if you can right a condtional check for the url for example
 
-      ```.js
+```.js
 
-        let heroku_url = `appname.herokuapp.com/#/`;
-        let render_url = `appname.onrender.com/#/`;
+      let heroku_url = `appname.herokuapp.com/#/`;
+      let render_url = `appname.onrender.com/#/`;
 
-        let platform_url = this.props.location.pathname =  // NOOOOO !!!! this does not work props,history and props.location only returns script paths
+      let platform_url = this.props.location.pathname = something
+      // NOOOOO !!!! this does not work props,history and props.location only returns script paths
 
-        // we will have to use js windows api util library 
+      // we will have to use js windows api util library 
 
-        windows.location.pathname = returns full url 
-        windows.location.hostname = returns the host name (domain name)
-        //in this example let use local host as url so windows.location.href = 'http://localhost:3000/#/blah/blah/blah'
+      windows.location.pathname = returns full url 
+      windows.location.hostname = returns the host name (domain name)
+      //in this example let use local host as url so windows.location.href = 'http://localhost:3000/#/blah/blah/blah'
         
-        //if the only platforms are heroku and render that the app is deployed on if you have more platforms use a switch statment to handle
-        //the check
+      //if the only platforms are heroku and render that the app is deployed on 
+      //if you have more platforms use a switch statement to handle the check
 
-        let platform_url = window.location.href.includes(heroku_url) ? heroku_url : render_url
+      let platform_url = window.location.href.includes(heroku_url) ? heroku_url : render_url    
+```
 
-      
-      ```
+If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:
 
-    If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:
+To do this we must create seperate repos here you'll something new about git 
 
-    To do this we must create seperate repos here you'll something new about git 
+  We will mirror repos of our project:
 
-    We will mirror repos of our project:
+- On your github or git lab account create a new repo named your app name _ platform example : appname_render or appname_heroku in the console navigate to whereever your projects are stored and create a new directory
 
-    - On your github or git lab account create a new repo named your app name _ platform example : appname_render or appname_heroku in the console navigate to whereever your projects are stored and create a new directory
-
-      ```shell script
+```shell script
       user:~/.../ mkdir appname_render
       user:~/.../ cd appname_render
       user:~/.../ git clone --bare https://github.com/user/old-repository-appname.git (your orignal repo link)
       user:~/.../ cd old-repository-appname.git
-      user:~/.../ git push --mirror https:://github.com/user/new-repository.git    (the new repo you created moments ago)
+      user:~/.../ git push --mirror https:://github.com/user/new-repository.git (the new repo you created moments ago)
       user:~/.../ cd ..
-      user:~/.../ rm -rf old-repository-appname.git  //delete git of old repo
-      user:~/.../ git clone https:://github.com/user/new-repository.git  //clone the mirrored repo
+      user:~/.../ rm -rf old-repository-appname.git //delete git of old repo
+      user:~/.../ git clone https:://github.com/user/new-repository.git //clone the mirrored repo
       user:~/.../ cd appname_platformname
 
-      ```
-    After this process proceed to make needed changes to your project after you obtain your new domain url 
-    on render.com use connect to this repo to deploy this version of your app
-    after successful deployment you can choose to keep this repo private and provide the url for render.com in the readme.md file
-    of the original repo along with the heroku version.
+```
 
-    Why mirror? and not fork or clone ? 
+  After this process proceed to make needed changes to your project after you obtain your new domain url 
+  on render.com use connect to this repo to deploy this version of your app
+  after successful deployment you can choose to keep this repo private and provide the url for render.com in the readme.md file
+  of the original repo along with the heroku version.
 
-    This is simply due to that cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
-        
-    Forked repos are basically copies of the orignal repo when changes are pushed to the parent repo the fork can be used to sync those
-    changes to the forked version undoing any changes you may have pushed to your fork.
+### Why mirror? and not fork or clone ?
 
-    Mirrored repos are copies of the original repo including commit history, with exceptions to wiki and other repo props
-    and can be pushed changes to itself that do not reflect to the original nor can changes in the orignal repo effect it 
-    it is a more effective way to create a new repo for an existing project than removing the old git folder and creating a new one 
-    it allows you access to the projects git history to make and undo changes easily. 
+  This is simply due to that cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
 
+  Forked repos are basically copies of the orignal repo when changes are pushed to the parent repo the fork can be used to sync those
+  changes to the forked version undoing any changes you may have pushed to your fork.
 
-
+  Mirrored repos are copies of the original repo including commit history, with exceptions to wiki and other repo props
+  and can be pushed changes to itself that do not reflect to the original nor can changes in the orignal repo affect the mirrored. Its also an easier way to create a new repo for an existing project than removing the old git folder and creating a new one it allows you access to the projects git history to make and undo changes easily.
