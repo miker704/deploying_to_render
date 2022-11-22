@@ -28,7 +28,7 @@ either right a conditional check to handle mutliple platforms or create seperate
 
 Lets go over quickly on a condtional check for using a singler repo for multiple platform deployment  
 
-- You must have seperate repos of your application for deployments on aws, heroku or render specifically, you can deploy to all these platforms using one repo if you can right a condtional check for the url for example
+- You must have seperate repos of your application for deployments on aws, heroku or render specifically, you can deploy to all these platforms using one repo if you can write a condtional check for the url for example
 
 ```.js
 
