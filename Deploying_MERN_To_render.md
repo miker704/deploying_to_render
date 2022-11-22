@@ -3,6 +3,7 @@
 - These instructions are for deploying a MERN Project from Heroku.com to Render.com
 - It assumes you have made all the steps needed to deploy successfully to Heroku.com
 - This method works for cohorts 3/2022 - 8/2022
+- This guide is used to push a MERN project using JWT tokens if your using CSRF-Tokens use the instructions for deployment on App Academy Open, if they fail to work keep the changes involving CSRF-Tokens and redact everything else and this guide should work for you.
 
 If your cohort started after 9/2022 its recommended you follow the instructions on App Academy Open first before trying this method,
 if that method fails you'll need to combine Open's instructions and the instructions here to deploy your application.
@@ -138,6 +139,8 @@ if (process.env.NODE_ENV === 'production') {
 If you have deployed this app to heroku before your app is basically ready to deploy to render. using the heroku-postbuild script to build the
 static frontend files into a frontend/build folder via express was needed to deploy to heroku we can use this same script and code on render.com. If you havent deployed to heroku before its reccommended to use the tutorial on App Academy Open first.
 
+If your using CSRF-TOKENS in your app.js file refer to the instructions on app academy open first, if your app fails to deploy using Open's instructions remove the changes made keeping only the changes needed in app.js for CSRF-Tokens and continue with this guide.
+
 Now prior to pushing your changes to github/gitlab if your mern project was built on machines using different operating systems, windows/wsl, mac os or linux you may experience a build error on render for unsupported platform given. To avoid this delete all  ```package-lock.json``` files leaving only the ```package.json``` files then push to github/gitlab.
 
 ## Render.com
@@ -199,7 +202,7 @@ Now prior to pushing your changes to github/gitlab if your mern project was buil
     REDIS_URL                        redis internal connection url (if using redis)
 ```
 
-- List any other key:value pairs your app needs for production deployment  
+- List any other key:value pairs your app needs for production deployment (I.e API Tokens, google maps api, google auth, twillo, etc)
 
 - Click disable automatic deployment (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance and is best to leave it disabled).
 
