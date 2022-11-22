@@ -521,7 +521,7 @@ user:~/.../ cd appname_platformname
 - sync with the upstream repo (parent repo)
 - git pop to restore the code stored in your stash
 - make the necessary integrations needed for you app to work with the newly synced changes from upstream
-- push to github./gitlab
+- push to github/gitlab
 - rebuild your app on the other hosting platforms you are deploying on.
 
   If you are using gitKraken this process will be much more conflict free and easier to avoid merge conflicts and accidental overwrites.
