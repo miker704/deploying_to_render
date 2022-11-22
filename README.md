@@ -454,7 +454,7 @@ build process on render.
 
   - If you have code that is DEPENDENT on your platforms url to generate data (i.e. urls, invites, etc)/ execute tasks you will need to do the following:
 
-  - You must have seperate repos of your application for deployments on aws, heroku or render specifically, you can deploy to all these platforms using one repo if you can right a condtional check for the url for example
+  - You must have seperate repos of your application for deployments on aws, heroku or render specifically, you can deploy to all these platforms using one repo if you can write a condtional check for the url for example
 
 ```.js
 
