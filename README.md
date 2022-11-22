@@ -338,7 +338,7 @@ Since you can only have one PostgreSQL DB instance active on render you must sha
   REDIS_URL                        redis internal connection url (if using redis)
 ```
 
-- List any other key:value pairs your app needs for production deployment  
+- List any other key:value pairs your app needs for production deployment (I.e API Tokens, google maps api, google auth, twillo, etc)
 
 - Click disable automatic deployment if you use action cable to avoid having to drop your db and      connecting a new one. (Auto deploy rebuilds and re-deploys your site after every git push although convenient its more of a nuisance and is best to leave it disabled).
 
