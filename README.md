@@ -1,8 +1,6 @@
 # Deploying a Rails-React Full-Stack Application to Render.com (Heroku -> Render only)
 
-## For Deploying MERN Projects to Render.com from Heroku those instructions are here
-
-[MERN_DEPLOY](./Deploying_MERN_To_render.md)
+## For Deploying MERN Projects to Render.com from Heroku those instructions are here [MERN_DEPLOY](./Deploying_MERN_To_render.md)
 
 - These set of instructions are dedicated to App Academy students proceeding to re-deploy their rails - react full-stack apps from Heroku.com to Render.com, and the provided instructions on App Academy open have failed to work for them.
 
@@ -517,7 +515,16 @@ user:~/.../ cd appname_platformname
   This is simply due to that cloning the project means any pushed changes affect the orignal repo (if your authorized to make changes)
 
   Forked repos are basically copies of the orignal repo when changes are pushed to the parent repo the fork can be used to sync those
-  changes to the forked version undoing any changes you may have pushed to your fork.
+  changes to the forked version undoing any changes you may have pushed to your fork. You can use a fork as a seperate repo and make changes without affecting the parent repo, but the fact that your fork changes can be overwritten by an accidental sync, makes a fork repo too volatile to use for deployment to a different platform. This is especailly true for a project with multiple collaborators. However you can use a fork to deploy to another platform just be aware of the steps needed :
+
+- use git stash to save Platform dependent code needed to deploy to an alt-platform
+- sync with the upstream repo (parent repo)
+- git pop to restore the code stored in your stash
+- make the necessary integrations needed for you app to work with the newly synced changes from upstream
+- push to github./gitlab
+- rebuild your app on the other hosting platforms you are deploying on.
+
+  If you are using gitKraken this process will be much more conflict free and easier to avoid merge conflicts and accidental overwrites.
 
   Mirrored repos are copies of the original repo including commit history, with exceptions to wiki and other repo props
   and can be pushed changes to itself that do not reflect to the original nor can changes in the orignal repo affect the mirrored. Its also an easier way to create a new repo for an existing project than removing the old git folder and creating a new one it allows you access to the projects git history to make and undo changes easily.
