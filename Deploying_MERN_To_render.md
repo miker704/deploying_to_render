@@ -7,6 +7,8 @@
 If your cohort started after 9/2022 its recommended you follow the instructions on App Academy Open first before trying this method,
 if that method fails you'll need to combine Open's instructions and the instructions here to deploy your application.
 
+## If your looking to deploy your rails-react app click here [Rails-React_DEPLOY](./README.md)
+
 ## Disclaimers Before Proceeding
 
 - If your app has code that is dependent on the full url including the domain/host name to execute/ generate some data link custom urls, invite links etc. You will need to make the proper changes after obtaining your website url from render.com.
