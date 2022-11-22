@@ -464,7 +464,6 @@ build process on render.
 
       // we will have to use js windows api util library 
 
-
       //example running on local host current url is
       // 'http://localhost:3000/#/@me/:serverid/:channelId'
       
@@ -473,7 +472,6 @@ build process on render.
       windows.location.pathname = '/@me/:serverid/:channelId'
 
       //returns the host name (domain name)
-      
       
       windows.location.hostname = localhost
 
@@ -488,12 +486,12 @@ build process on render.
       windows.location.href = 'http://appname.herokuapp.com/#/@me/:serverid/:channelId'
 
       windows.location.href = 'http://appname.onrender.com/#/@me/:serverid/:channelId'
-
         
       //if the only platforms are heroku and render that the app is deployed on 
       //if you have more platforms use a switch statement to handle the check
 
       let platform_url = window.location.href.includes(heroku_url) ? heroku_url : render_url    
+      
 ```
 
 If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:
