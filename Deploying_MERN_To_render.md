@@ -35,23 +35,44 @@ Lets go over quickly on a condtional check for using a singler repo for multiple
 
 ```.js
 
-    let heroku_url = `appname.herokuapp.com/#/`;
-    let render_url = `appname.onrender.com/#/`;
+      let heroku_url = `appname.herokuapp.com/#/`;
+      let render_url = `appname.onrender.com/#/`;
 
-    let platform_url = this.props.location.pathname =  something
-    // NOOOOO !!!! this does not work props,history and props.location only returns script paths
+      let platform_url = this.props.location.pathname = something
+      // NOOOOO !!!! this does not work props,history and props.location only returns script paths
 
-    // we will have to use js windows api util library 
+      // we will have to use js windows api util library 
 
-    windows.location.pathname = returns full url 
-    windows.location.hostname = returns the host name (domain name)
-    
-    //in this example let use local host as url so windows.location.href = 'http://localhost:3000/#/blah/blah/blah'
+
+      //example running on local host current url is
+      // 'http://localhost:3000/#/@me/:serverid/:channelId'
+      
+      // returns current path like props.location.pathname does
+      
+      windows.location.pathname = '/@me/:serverid/:channelId'
+
+      //returns the host name (domain name)
+      
+      
+      windows.location.hostname = localhost
+
+      //full url in the search bar
+
+      //local host example
+
+      windows.location.href = 'http://localhost:3000/#/@me/:serverid/:channelId'
+
+      //heroku example and render example
+
+      windows.location.href = 'http://appname.herokuapp.com/#/@me/:serverid/:channelId'
+
+      windows.location.href = 'http://appname.onrender.com/#/@me/:serverid/:channelId'
+
         
-    //if the only platforms are heroku and render that the app is deployed on if you have more platforms use
-    //a switch statment to handle the check
+      //if the only platforms are heroku and render that the app is deployed on 
+      //if you have more platforms use a switch statement to handle the check
 
-    let platform_url = window.location.href.includes(heroku_url) ? heroku_url : render_url
+      let platform_url = window.location.href.includes(heroku_url) ? heroku_url : render_url   
 ```
 
 If this seems much or you have alot of files that use the the full url we can deploy seperate repos for each platform:  
