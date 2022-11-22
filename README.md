@@ -464,10 +464,31 @@ build process on render.
 
       // we will have to use js windows api util library 
 
-      windows.location.pathname = returns full url 
-      windows.location.hostname = returns the host name (domain name)
-      //in this example let use local host as url 
-      //so windows.location.href = 'http://localhost:3000/#/blah/blah/blah'
+
+      //example running on local host current url is
+      // 'http://localhost:3000/#/@me/:serverid/:channelId'
+      
+      // returns current path like props.location.pathname does
+      
+      windows.location.pathname = '/@me/:serverid/:channelId'
+
+      //returns the host name (domain name)
+      
+      
+      windows.location.hostname = localhost
+
+      //full url in the search bar
+
+      //local host example
+
+      windows.location.href = 'http://localhost:3000/#/@me/:serverid/:channelId'
+
+      //heroku example and render example
+
+      windows.location.href = 'http://appname.herokuapp.com/#/@me/:serverid/:channelId'
+
+      windows.location.href = 'http://appname.onrender.com/#/@me/:serverid/:channelId'
+
         
       //if the only platforms are heroku and render that the app is deployed on 
       //if you have more platforms use a switch statement to handle the check
